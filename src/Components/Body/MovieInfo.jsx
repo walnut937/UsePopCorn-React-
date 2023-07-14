@@ -7,10 +7,10 @@ function MovieInfo({ movie, setSelectedmovie, watchlistarray, watchlist }) {
         watchlistarray(mov);
         setAdd(!add)
     }
-
+    // console.log(movie.i.imageUrl)
     const select = watchlist.find(item => item.id === movie.id)
 
-
+    const Poster = movie.i.imageUrl;
     //using useeffect for the rerender of select constant
     useEffect(()=> {
         if(select){
@@ -25,14 +25,14 @@ function MovieInfo({ movie, setSelectedmovie, watchlistarray, watchlist }) {
         <div className='bg-slate-600 gap-2 md:flex-[.5] rounded-md p-3 overflow-y-scroll'>
             <div className='bg-slate-500 relative flex gap-6 items-center rounded-lg'>
                 <div className='absolute z-40 top-0 cursor-pointer' onClick={() => setSelectedmovie(null)}>
-                    <i class="fa-solid fa-circle-arrow-left text-2xl text-white"></i>
+                    <i className="fa-solid fa-circle-arrow-left text-2xl text-white"></i>
                 </div>
-                <img className='w-32 rounded-lg' src={movie.img} alt={movie.name} />
+                <img className='w-32 rounded-lg' src={Poster} alt={movie.l} />
                 <div className='flex flex-col text-white font-mono gap-4'>
-                    <h1 className='text-3xl'>{movie.name}</h1>
-                    <h1 className='text-sm'><span>{movie.date}</span> • <span>{movie.duration}</span> </h1>
-                    <p className='text-sm'>{movie.genre}</p>
-                    <p className='text-sm'>⭐{movie.rating} IMDb rating</p>
+                    <h1 className='text-3xl'>{movie.l}</h1>
+                    <h1 className='text-sm'><span>{movie.y}</span> • <span>{movie.duration}</span> </h1>
+                    <p className='text-sm'>{movie.s}</p>
+                    <p className='text-sm'>⭐{movie.rank} IMDb rating</p>
                 </div>
             </div>
 

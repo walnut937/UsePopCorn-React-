@@ -1,7 +1,9 @@
 import React from 'react'
 import ListItem from './ListItem'
+import Loading from './MinorComponents/Loading'
+import Error from './MinorComponents/Error'
 
-function Listbox({ movies, onmovieClick, open1, setOpen1 }) {
+function Listbox({ movies, onmovieClick, open1, setOpen1, isLoading, error }) {
 
 
   return (
@@ -13,17 +15,20 @@ function Listbox({ movies, onmovieClick, open1, setOpen1 }) {
         { open1 && 
         <>
         <h1 className='text-4xl text-white font-bold font-mono text-center mb-2'>Movies</h1>
+        {isLoading && <Loading/>}
+
+        {!isLoading && !error && 
           <ul>
-            {movies?.length > 0 ? 
+            {movies?.length > 0 &&  
             (
               movies.map((movie, index) => (
               <ListItem movie={movie} key={index} onmovieClick={onmovieClick}/>
               ))
-            ) : (
-              <h1 className='text-center text-white mt-32 text-3xl'>Search</h1>
-            )  
+            )   
           }
-          </ul>
+          </ul>}
+          
+          {error && <Error message={error} />}
         </>
         }
     </div>

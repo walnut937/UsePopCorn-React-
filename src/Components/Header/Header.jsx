@@ -10,7 +10,7 @@ function Header({ movies, search, setSearch }) {
                 <Search search={search} setSearch={setSearch}/>
             </div>
             <div className='hidden lg:block'>
-                <h1 className='text-xl font-medium text-white'>Found {movies.length} results</h1>
+                <h1 className='text-xl font-medium text-white'>Found results</h1>
             </div>
         </nav>
     </>
