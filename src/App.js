@@ -37,38 +37,38 @@ function App() {
   //     console.log(error);
   //   }
   // }
-
-
+ 
+  // API CALLS MADE
     useEffect(() => { 
-      const searchmovies = async(title) => {
-        try {
-        setIsLoading(true);
-        const url = (`https://imdb8.p.rapidapi.com/auto-complete?q=${title}`);
-        const options = { 
+      const searchmovies = async(title) => { // using a async fucntion for fetching data
+        try { // try block to fetch API and other operations
+        setIsLoading(true); // the isloading state being true
+        const url = (`https://imdb8.p.rapidapi.com/auto-complete?q=${title}`); // fetching the data
+        const options = {  // created the objects for storing the method and the API key
           method: 'GET',
           headers: {
             'X-RapidAPI-Key': (`${APIKEY}`),
             'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
           }
         };
-          const response = await fetch(url, options);
-          if(!response.ok) 
-          throw new Error("Something went wrong with fetching Movies");
+          const response = await fetch(url, options); // response for HTTP request
+          if(!response.ok)  // checking for the possible errors if the HTTP request doesn't reach
+          throw new Error("Something went wrong with fetching Movies"); // throwing an Error if response doesn't work
 
-          const data = await response.json();
-          console.log(data)
-          if(data.response === 'false') 
-          throw new Error("Movie not Found");
+          const data = await response.json(); // getting data after the HTTP request
+          // console.log(data) 
+          if(data.response   === 'false') // checking the searched answer with the data  
+          throw new Error("Movie not Found"); // if Errors occured then error is thrown
 
-          setMovies(data.d)
-        } catch (error) {
-          setError(error.message)
-        } finally {
-          setIsLoading(false);
+          setMovies(data.d) // sending the movies data in the main movies array
+        } catch (error) { // catch block to get errors and display them
+          setError(error.message) // error state to store the errors and in the empty state
+        } finally { // finally is just like try and catch but the difference is it will be executed no matter what the condition or situation is
+          setIsLoading(false);// loading state is made false for undisplaying the Loading message
         }
       }
-      searchmovies('doraemon')
-    }, []);
+      searchmovies('doraemon') // the Async function is being called 
+    }, []); // there is an empty dipendency array so that when the screen is rendered then the useEffect runs
 
 
   //getting the index of a movie 
